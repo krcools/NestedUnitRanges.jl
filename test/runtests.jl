@@ -3,7 +3,7 @@ using Test
 
 import BlockArrays
 
-@testset "NestedUnitRange.jl" begin
+# @testset "NestedUnitRange.jl" begin
     nur = nestedrange([[2,3],4])
 
     @test length(nur) == 9
@@ -50,4 +50,4 @@ import BlockArrays
     b12 = getindex(w12, BlockArrays.Block(1))
     @test b12 isa BlockArrays.PseudoBlockVector
     @test axes(b12,1) == nestedrange([3])
-end
+# end
