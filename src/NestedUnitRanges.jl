@@ -33,9 +33,10 @@ Base.axes(r::NestedUnitRange) = (rebase_axis(r),)
 Base.first(r::NestedUnitRange) = r.first
 Base.last(r::NestedUnitRange) = r.first + r.length - 1
 
-"""
-s
-"""
+# Make sure that views remember the nested block structure of the parent. This
+# seems to be the default on 1.8 but no on 1.6
+Base.axes(s::SubArray{T,1,A,Tuple{NestedUnitRange}}) where {T,A} = axes(s.indices[1])
+
 function nestedrange(tree, first=1, treesize=nestedsum)
     children = Vector{NestedUnitRange}()
     child_first = first
