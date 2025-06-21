@@ -107,5 +107,8 @@ function BlockArrays.findblock(ax::NestedUnitRange, k)
     findblock(ax1, k)
 end
 
-ArrayLayouts.sub_materialize(::Any, V, axs::Tuple{<:NestedUnitRange}) = BlockArrays.PseudoBlockArray(Array(V), axs)
+function ArrayLayouts.sub_materialize(::Any, V, axs::Tuple{<:NestedUnitRange})
+    BlockArrays.BlockedArray(Array(V), axs)
+end
+
 end
