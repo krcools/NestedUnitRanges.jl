@@ -6,7 +6,7 @@ import AbstractTrees
 
 export nestedrange
 
-struct NestedUnitRange <: AbstractUnitRange{Int}
+struct NestedUnitRange <: BlockArrays.AbstractBlockedUnitRange{Int, Vector{Int}}
     length::Int
     first::Int
     children::Vector{NestedUnitRange}
