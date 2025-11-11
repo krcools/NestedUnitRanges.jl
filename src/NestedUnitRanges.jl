@@ -29,7 +29,10 @@ function rebase_axis(nested_range, offset=1)
     NestedUnitRange(len, offset, rebased_children)
 end
 
-Base.axes(r::NestedUnitRange) = (rebase_axis(r),)
+function Base.axes(r::NestedUnitRange)
+    r.first == 1 && return (r,)
+    (rebase_axis(r),)
+end
 Base.first(r::NestedUnitRange) = r.first
 Base.last(r::NestedUnitRange) = r.first + r.length - 1
 
